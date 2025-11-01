@@ -61,7 +61,9 @@ class KeywordQueryEventListener(EventListener):
                 session_path = session.get("Path", "No path available")
 
                 # This command will be executed when the user presses Enter
-                connect_command = f'sesh connect "{session_name}"'
+                connect_command = (
+                    f'kitty @ launch --type=tab sesh connect "{session_name}"'
+                )
 
                 items.append(
                     ExtensionResultItem(
