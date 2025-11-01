@@ -25,6 +25,28 @@ class SeshExtension(Extension):
 class KeywordQueryEventListener(EventListener):
     """Handles the user's input when they type the keyword"""
 
+    def get_connect_command(self, session_name):
+        try:
+            kitty_ls = subprocess.run(
+                [
+                    "kitty",
+                    "@",
+                    "ls",
+                ],
+                capture_output=True,
+                text=True,
+            )
+
+            found_tmux_session = ('"tmux"' in kitty_ls.stdout) and (
+                f'"{session_name}"' in kitty_ls.stdout
+            )
+            if not found_tmux_session:
+                return f'kitty -e sesh connect "{session_name}"'
+
+            return f'kitty @ focus-window --match cmdline:"{session_name}"'
+        except subprocess.CalledProcessError as e:
+            print(f"Error interacting with Kitty: {e.stderr}")
+
     def on_event(self, event, extension):
         """
         This method is called when the user types the 'sesh' keyword.
@@ -60,10 +82,7 @@ class KeywordQueryEventListener(EventListener):
                 session_name = session.get("Name")
                 session_path = session.get("Path", "No path available")
 
-                # This command will be executed when the user presses Enter
-                connect_command = (
-                    f'kitty @ launch --type=tab sesh connect "{session_name}"'
-                )
+                connect_command = self.get_connect_command(session_name)
 
                 items.append(
                     ExtensionResultItem(
