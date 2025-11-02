@@ -86,12 +86,16 @@ class KeywordQueryEventListener(EventListener):
             for session in sessions:
                 session_name = session.get("Name")
                 session_path = session.get("Path", "No path available")
+                session_type = session.get("Type", "tmux")
 
+                icon = (
+                    "images/sesh.png" if session_type == "tmux" else "images/zoxide.png"
+                )
                 connect_command = self.get_connect_command(session_name)
 
                 items.append(
                     ExtensionResultItem(
-                        icon="images/sesh-icon.png",
+                        icon=icon,
                         name=f"Connect to: {session_name}",
                         description=f"Path: {session_path}",
                         on_enter=RunScriptAction(connect_command),
