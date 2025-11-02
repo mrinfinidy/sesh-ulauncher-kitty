@@ -110,7 +110,7 @@ class KeywordQueryEventListener(EventListener):
             LOGGER.error("'sesh' command not found")
             items.append(
                 ExtensionResultItem(
-                    icon="images/sesh-icon.png",
+                    icon="images/sesh.png",
                     name="Error: 'sesh' command not found",
                     description="Please ensure 'sesh' is installed and in your system's PATH.",
                     on_enter=HideWindowAction(),
@@ -121,7 +121,7 @@ class KeywordQueryEventListener(EventListener):
             LOGGER.error(f"sesh command failed: {e.stderr}")
             items.append(
                 ExtensionResultItem(
-                    icon="images/sesh-icon.png",
+                    icon="images/sesh.png",
                     name="Error executing 'sesh' command",
                     description=e.stderr or "Check Ulauncher logs for details.",
                     on_enter=HideWindowAction(),
@@ -132,7 +132,7 @@ class KeywordQueryEventListener(EventListener):
             LOGGER.error("Failed to parse JSON from sesh command")
             items.append(
                 ExtensionResultItem(
-                    icon="images/sesh-icon.png",
+                    icon="images/sesh.png",
                     name="Error parsing sesh output",
                     description="The output from 'sesh' was not valid JSON.",
                     on_enter=HideWindowAction(),

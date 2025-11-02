@@ -3,7 +3,7 @@
   "name": "Sesh Session Manager",
   "description": "Quickly find and switch to sesh sessions.",
   "developer_name": "afkdev8",
-  "icon": "images/sesh-icon.png",
+  "icon": "images/sesh.png",
   "options": {
     "query_debounce": 0.1
   },
