@@ -60,7 +60,7 @@ class KeywordQueryEventListener(EventListener):
         items = []
         try:
             # 1. Execute shell command to list sessions
-            command = ["sesh", "l", "-c", "-t", "-T", "-d", "--json"]
+            command = ["sesh", "l", "-c", "-t", "-T", "--json"]
             process = subprocess.run(
                 command,
                 capture_output=True,
