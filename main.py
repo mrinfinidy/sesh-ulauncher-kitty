@@ -58,8 +58,7 @@ class KeywordQueryEventListener(EventListener):
         It executes the sesh command, parses the JSON output, and displays the results.
         """
 
-        # terminal_bin = self.preferences["terminal_bin"]
-        terminal_bin = "kitty"
+        terminal_bin = extension.preferences["terminal_bin"]
         items = []
         try:
             # 1. Execute shell command to list sessions
