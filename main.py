@@ -47,7 +47,7 @@ class KeywordQueryEventListener(EventListener):
 
             if tmux_con_id:
                 return f'swaymsg "[con_id={tmux_con_id}] focus"'
-            return ""
+            return f"kitty -e sesh connect {session_name}"
 
         except subprocess.CalledProcessError as e:
             print(f"Error interacting with Kitty: {e.stderr}")
