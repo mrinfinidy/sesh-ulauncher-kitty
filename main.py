@@ -86,10 +86,10 @@ class KeywordQueryEventListener(EventListener):
             for session in sessions:
                 session_name = session.get("Name")
                 session_path = session.get("Path", "No path available")
-                session_type = session.get("Type", "tmux")
+                session_src = session.get("Src", "tmux")
 
                 icon = (
-                    "images/sesh.png" if session_type == "tmux" else "images/zoxide.png"
+                    "images/sesh.png" if session_src == "tmux" else "images/zoxide.png"
                 )
                 connect_command = self.get_connect_command(session_name)
 
