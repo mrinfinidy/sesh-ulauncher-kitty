@@ -35,7 +35,7 @@ class KeywordQueryEventListener(EventListener):
                     return result
         return None
 
-    def get_connect_command(self, session_name):
+    def get_connect_command(self, session_name, terminal_bin):
         try:
             sway_tree = json.loads(
                 subprocess.run(
@@ -47,16 +47,18 @@ class KeywordQueryEventListener(EventListener):
 
             if tmux_con_id:
                 return f'swaymsg "[con_id={tmux_con_id}] focus"'
-            return f"kitty -e sesh connect {session_name}"
+            return f"{terminal_bin} -e sesh connect {session_name}"
 
         except subprocess.CalledProcessError as e:
-            print(f"Error interacting with Kitty: {e.stderr}")
+            print(f"Error interacting with {terminal_bin}: {e.stderr}")
 
     def on_event(self, event, extension):
         """
         This method is called when the user types the 'sesh' keyword.
         It executes the sesh command, parses the JSON output, and displays the results.
         """
+
+        terminal_bin = self.preferences["terminal_bin"]
         items = []
         try:
             # 1. Execute shell command to list sessions
@@ -91,7 +93,7 @@ class KeywordQueryEventListener(EventListener):
                 icon = (
                     "images/sesh.png" if session_src == "tmux" else "images/zoxide.png"
                 )
-                connect_command = self.get_connect_command(session_name)
+                connect_command = self.get_connect_command(session_name, terminal_bin)
 
                 items.append(
                     ExtensionResultItem(

@@ -16,7 +16,7 @@
       "default_value": "sesh"
     },
     {
-      "id": "terminal",
+      "id": "terminal_bin",
       "type": "input",
       "name": "Terminal binary",
       "description": "Binary name of your terminal emulator. E.g. kitty, alacritty or wezterm",
