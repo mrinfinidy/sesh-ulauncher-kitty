@@ -15,7 +15,7 @@ The original plugin did not do anything on my system. That is why I have adjuste
 - Select zoxide directories
 - Selected zoxide directories will open in new tmux session
 - Selected tmux sessions will be focused if they are already open (in a window)
-- If the session is not open SESHion-manager will it in a new terminal window
+- If the session is not open SESHion-manager will open it in a new terminal window
 
 ## Usage
 
